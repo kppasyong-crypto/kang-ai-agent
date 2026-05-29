@@ -50,7 +50,7 @@ def get_groq_client():
 MODELS = {
     "groq-large": "llama-3.3-70b-versatile", # 높은 정확도
     "groq-small": "llama-3.1-8b-instant",    # 균형
-    "groq-fast":  "gemma2-9b-it",            # 빠름 / 저비용
+    "groq-fast":  "llama-3.1-8b-instant",     # 빠름 / 저비용
 }
 
 # 작업별 최적 모델 라우팅
@@ -68,7 +68,7 @@ MODEL_ROUTING = {
 
 def get_model(task_type: str) -> str:
     """작업 유형에 따른 최적 모델 반환"""
-    return MODEL_ROUTING.get(task_type, MODELS["sonnet"])
+    return MODEL_ROUTING.get(task_type, MODELS["groq-fast"])
 
 
 # ── PII 마스킹 ─────────────────────────────────────────────────────

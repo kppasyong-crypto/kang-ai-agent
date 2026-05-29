@@ -6,9 +6,9 @@ from copy import deepcopy
 
 
 OPENAI_MODEL_MAP = {
-    "claude-haiku-4-5-20251001": "gpt-5.4-nano",
-    "claude-sonnet-4-6": "gpt-5.4-mini",
-    "claude-opus-4-5": "gpt-5.4",
+    "claude-haiku-4-5-20251001": "gemma2-9b-it",
+    "claude-sonnet-4-6": "llama-3.1-8b-instant",
+    "claude-opus-4-5": "llama-3.3-70b-versatile",
 }
 
 
@@ -63,10 +63,7 @@ def create_chat_completion(
         "model": resolved_model,
         "messages": build_openai_messages(messages, system=system),
     }
-    if resolved_model.startswith("gpt-5"):
-        kwargs["max_completion_tokens"] = max_tokens
-    else:
-        kwargs["max_tokens"] = max_tokens
+    kwargs["max_tokens"] = max_tokens
     if tools:
         kwargs["tools"] = convert_anthropic_tools_to_openai(tools)
         kwargs["tool_choice"] = "auto"

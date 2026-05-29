@@ -83,11 +83,6 @@ FINANCIAL_TOOLS = [
                         "type": "string",
                         "description": "검색 키워드. 예: 주택담보대출 금리, 미국 기준금리",
                     },
-                    "limit": {
-                        "type": "integer",
-                        "description": "반환할 뉴스 건수. 기본 3, 최대 5",
-                        "default": 3,
-                    },
                 },
                 "required": ["query"],
                 "additionalProperties": False,
@@ -177,7 +172,7 @@ def calculate_loan_payment(principal: float, annual_rate: float, months: int) ->
 
 def search_financial_news(query: str, limit: int = 3) -> dict:
     """금융 뉴스 검색 Mock 데이터"""
-    limit = min(max(1, limit), 5)
+    limit = min(max(1, int(limit)), 5)
 
     mock_news = [
         {
